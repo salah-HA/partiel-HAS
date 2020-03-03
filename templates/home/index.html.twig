@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Home Page{% endblock %}
+
+{% block body %}
+    {% for message in app.flashes('deleted') %}
+        {{ message }}
+    {% endfor %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+<div>
+    <ul>
+        <li>
+            {% if app.user %}
+            <a href="{{ path('app_logout') }}">deconnecter</a>
+                <h1>TESTECHO</h1>
+            {% else %}
+            <a href="{{ path('app_login') }}">connection</a>
+            {% endif %}
+        </li>
+
+    </ul>
+</div>
+<div class="example-wrapper">
+    <ul>
+    {% for videoGame in videoGames %}
+        <li>{{ videoGame.title }}</li>
+        <a href="{{ path('articles',{id:videoGame.id}) }}"> detail</a>
+        <li>{{ videoGame.support }}</li>
+    {% endfor %}
+    </ul>
+    {% if is_granted('ROLE_USER')  %}
+        <ul>
+            {% for editor in editors %}
+                <li>{{ editor.name }}</li>
+                <a href="{{ path('editor',{id:editor.id}) }}"> detail</a>
+                <li>{{ editor.nationality }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</div>
+{% endblock %}

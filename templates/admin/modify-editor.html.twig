@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Create Editor{% endblock %}
+
+{% block body %}
+    {{ form_start(form) }}
+    {{ form_row(form.name) }}
+    {{ form_row(form.nationality) }}
+{#
+    <div>
+        {{ form_label(form.email) }}
+        {{ form_widget(form.email) }}
+        <span>{{ form_errors(form.email) }}</span>
+    </div>
+    <div>
+        {{ form_label(form.password) }}
+        {{ form_widget(form.password) }}
+        <span>{{ form_errors(form.password) }}</span>
+    </div>
+#}
+    <div>
+        <button type="submit">Submit</button>
+    </div>
+
+    {{ form_end(form) }}
+    <div>
+        <form action="{{ path("delete-editor", {id:editor.id}) }}">
+            <input type="hidden" name="token2" value="{{ csrf_token('delete' ~ editor.id) }}">
+            <button type="submit">Supprimer</button>
+        </form>
+    </div>
+{% endblock %}

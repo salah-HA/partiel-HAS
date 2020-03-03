@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Create Jeux Video{% endblock %}
+
+{% block body %}
+    {{ form_start(form) }}
+    {{ form_row(form.title) }}
+    {{ form_row(form.support) }}
+    {{ form_row(form.description) }}
+    {{ form_row(form.releaseAt) }}
+    {{ form_row(form.editor) }}
+{#
+    <div>
+        {{ form_label(form.email) }}
+        {{ form_widget(form.email) }}
+        <span>{{ form_errors(form.email) }}</span>
+    </div>
+    <div>
+        {{ form_label(form.password) }}
+        {{ form_widget(form.password) }}
+        <span>{{ form_errors(form.password) }}</span>
+    </div>
+#}
+    <div>
+        <button type="submit">Submit</button>
+    </div>
+
+    {{ form_end(form) }}
+    <div>
+        <form action="{{ path("delete-article", {id:article.id}) }}">
+            <input type="hidden" name="token1" value="{{ csrf_token('delete' ~ article.id) }}">
+            <button type="submit">Supprimer</button>
+        </form>
+    </div>
+{% endblock %}

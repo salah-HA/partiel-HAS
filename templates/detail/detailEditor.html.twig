@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Home Page{% endblock %}
+
+{% block body %}
+    <style>
+        .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+        .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    </style>
+    <div>
+        <ul>
+            <li>
+                {% if app.user %}
+                    <a href="{{ path('app_logout') }}">deconnecter</a>
+                    <h1>TESTECHO</h1>
+                {% else %}
+                    <a href="{{ path('app_login') }}">connection</a>
+                {% endif %}
+            </li>
+
+        </ul>
+    </div>
+    <div class="example-wrapper">
+        <ul>
+                <li>{{ editor.name }}</li>
+                <li>{{ editor.nationality }}</li>
+        </ul>
+
+    </div>
+{% endblock %}
